@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kzhdanov-toolbox
+  labels:
+    app: toolbox
+    reporting_team: fnd-cor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: toolbox
+  template:
+    metadata:
+      labels:
+        app: toolbox
+        reporting_team: fnd-cor
+    spec:
+      containers:
+      - name: toolbox
+        image: ghcr.io/zhdkirill/toolbox:1
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: 1
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
